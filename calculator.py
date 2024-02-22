@@ -1,8 +1,23 @@
 from tkinter import *
 
 def button_click(digit):
+    current = result.get()
     result.delete(0, END)
-    result.insert(0, digit)
+    result.insert(0, str(current) + str(digit))
+    
+def clear_btn():
+    result.delete(0, END)
+    
+def add_digits():
+    first_number = result.get()
+    global f_num
+    f_num = int(first_number)
+    result.delete(0, END)
+    
+def equal_func():
+    second_number = result.get()
+    result.delete(0, END)
+    result.insert(0, f_num + int(second_number))
 
 root = Tk()
 root.title("Calculator")
@@ -23,9 +38,9 @@ button_7 = Button(root, text="7", padx=40, pady=20, command=lambda: button_click
 button_8 = Button(root, text="8", padx=40, pady=20, command=lambda: button_click(8))
 button_9 = Button(root, text="9", padx=40, pady=20, command=lambda: button_click(9))
 button_0 = Button(root, text="0", padx=40, pady=20, command=lambda: button_click(0))
-button_add = Button(root, text="+", padx=39, pady=20, command=lambda: button_click)
-button_equal = Button(root, text="=", padx=91, pady=20, command=lambda: button_click)
-button_clear = Button(root, text="C", padx=91, pady=20, command=lambda: button_click)
+button_add = Button(root, text="+", padx=39, pady=20, command=add_digits)
+button_equal = Button(root, text="=", padx=91, pady=20, command=equal_func)
+button_clear = Button(root, text="C", padx=91, pady=20, command=clear_btn)
 
 
 
