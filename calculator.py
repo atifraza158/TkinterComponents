@@ -11,13 +11,50 @@ def clear_btn():
 def add_digits():
     first_number = result.get()
     global f_num
+    global math
+    math = "addition"
     f_num = int(first_number)
     result.delete(0, END)
     
 def equal_func():
     second_number = result.get()
     result.delete(0, END)
-    result.insert(0, f_num + int(second_number))
+    
+    if math == "addition":
+        result.insert(0, f_num + int(second_number))
+        
+    if math == "subtraction":
+        result.insert(0, f_num - int(second_number))
+        
+    if math == "multiplication":
+        result.insert(0, f_num * int(second_number))
+        
+    if math == "division":
+        result.insert(0, f_num / int(second_number))
+    
+def subtract_btn():
+    first_number = result.get()
+    global f_num
+    global math
+    math = "subtraction"
+    f_num = int(first_number)
+    result.delete(0, END)
+
+def multiply_btn():
+    first_number = result.get()
+    global f_num
+    global math
+    math = "multiplication"
+    f_num = int(first_number)
+    result.delete(0, END)
+
+def divide_btn():
+    first_number = result.get()
+    global f_num
+    global math
+    math = "division"
+    f_num = int(first_number)
+    result.delete(0, END)
 
 root = Tk()
 root.title("Calculator")
@@ -43,6 +80,11 @@ button_equal = Button(root, text="=", padx=91, pady=20, command=equal_func)
 button_clear = Button(root, text="C", padx=91, pady=20, command=clear_btn)
 
 
+button_subtract = Button(root, text="-", padx=41, pady=20, command=subtract_btn)
+button_multiply = Button(root, text="*", padx=40, pady=20, command=multiply_btn)
+button_divide = Button(root, text="/", padx=40, pady=20, command=divide_btn)
+
+
 
 # Display Buttons
 button_1.grid(row=3, column=0,)
@@ -63,6 +105,10 @@ button_0.grid(row=4, column=0,)
 button_clear.grid(row=4,columnspan=2, column=1)
 button_add.grid(row=5, column=0)
 button_equal.grid(row=5, column=1, columnspan=2)
+
+button_subtract.grid(row=6, column=0,)
+button_multiply.grid(row=6, column=1,)
+button_divide.grid(row=6, column=2,)
 
 
 root.mainloop()
