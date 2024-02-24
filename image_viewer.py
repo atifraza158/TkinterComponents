@@ -18,6 +18,9 @@ def forward(image_number):
     button_back.grid(row=1, column=0)
     button_forward.grid(row=1, column=2)
     
+    status_label = Label(root, text=f"Image {str(image_number)} 0f " + str(len(images_list)), bd=1, relief="sunken", anchor=E, padx=15)
+    status_label.grid(column=0, row=2, columnspan=3, sticky=W+E)
+    
 
 def back(image_number):
     global my_label
@@ -32,10 +35,12 @@ def back(image_number):
     if image_number == 1:
         button_back = Button(root, text="<<", state='disabled')
     
-    
     my_label.grid(row=0, column=0, columnspan=3)
     button_back.grid(row=1, column=0)
     button_forward.grid(row=1, column=2)
+    
+    status_label = Label(root, text=f"Image {str(image_number)} 0f " + str(len(images_list)), bd=1, relief="sunken", anchor=E, padx=15)
+    status_label.grid(column=0, row=2, columnspan=3, sticky=W+E)
 
 
 root = Tk()
@@ -50,12 +55,13 @@ my_img4 = ImageTk.PhotoImage(Image.open("imageViewerImages/img4.jpg"))
 my_img5 = ImageTk.PhotoImage(Image.open("imageViewerImages/img5.jpg"))
 my_img6 = ImageTk.PhotoImage(Image.open("imageViewerImages/img6.jpg"))
 
-
-
 images_list = [my_img1, my_img2, my_img3, my_img4, my_img5, my_img6]
+
+status_label = Label(root, text="Image 1 0f " + str(len(images_list)), bd=1, relief="sunken", anchor=E, padx=15)
 
 my_label = Label(root, image=my_img1, height=400, width=600)
 my_label.grid(row=0, column=0, columnspan=3)
+
 
 
 button_back = Button(root, text="<<", command=lambda: back, state='disabled')
@@ -65,7 +71,8 @@ button_forward = Button(root, text=">>", command=lambda: forward(2))
 
 button_back.grid(row=1, column=0)
 button_exit.grid(row=1, column=1,)
-button_forward.grid(row=1, column=2)
+button_forward.grid(row=1, column=2, pady=10)
+status_label.grid(column=0, row=2, columnspan=3, sticky=W+E)
 
 
 root.mainloop()
